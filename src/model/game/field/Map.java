@@ -1,6 +1,8 @@
 package model.game.field;
 
 
+import java.util.Random;
+
 //import java.io.File;
 //import java.io.FileNotFoundException;
 //import java.util.Scanner;
@@ -13,7 +15,13 @@ public class Map {
 	
 	
 	public Map(){
-		
+		size=new Coord(50,20);
+		//load data
+		mapBlocks=new MapBlock[size.height][size.width];
+		for(int y=0; y<size.height; y++)
+			for(int x=0; x<size.width; x++)
+				mapBlocks[y][x]=new MapBlock(new Random().nextInt(5));//random
+			
 	}
 	//not used yet
 //	public Map(String fileName){

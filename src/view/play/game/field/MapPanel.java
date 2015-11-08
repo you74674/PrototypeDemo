@@ -2,14 +2,12 @@ package view.play.game.field;
 
 //import java.awt.Color;
 import java.awt.GridLayout;
-import java.util.Random;
 
 //import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import model.game.Coord;
 import model.game.field.Map;
-import model.game.field.MapBlock;
 
 public class MapPanel extends JPanel{
 	private Map map;
@@ -20,10 +18,7 @@ public class MapPanel extends JPanel{
 	public MapPanel() {
 		map=new Map();
 		
-		map.setSize(new Coord(50,20));
-		
 		setSize(new Coord(blockSize.width*map.getSize().width, blockSize.height*map.getSize().height));
-		
 		setLayout(new GridLayout(map.getSize().height, map.getSize().width));
 		
 		mapBlockPanels=new MapBlockPanel[map.getSize().height][map.getSize().width];
@@ -32,11 +27,8 @@ public class MapPanel extends JPanel{
 	}
 	private void loadData(){
 		for(int y=0; y<map.getSize().height; y++)
-			for(int x=0; x<map.getSize().width; x++){
-//				mapBlockPanels[y][x]=new MapBlockPanel(map.getMapBlock(x, y));
-				mapBlockPanels[y][x]=new MapBlockPanel(new MapBlock(new Random().nextInt(5)));//random
-//				mapBlockPanels[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			}
+			for(int x=0; x<map.getSize().width; x++)
+				mapBlockPanels[y][x]=new MapBlockPanel(map.getMapBlock(x, y));
 	}
 	private void setComponents(){
 		for(MapBlockPanel[] mapChipPanelsy: mapBlockPanels)
